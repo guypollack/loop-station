@@ -5,10 +5,21 @@ const gameState = {
 function preload () {
 	this.load.audio('drums', './resources/sounds/drum.wav');
 	this.load.audio('drums2', './resources/sounds/drum2.wav');
+	this.load.audio('drums3', './resources/sounds/drum3.wav');
+	this.load.audio('drums4', './resources/sounds/drum4.wav');
+	this.load.audio('drums5', './resources/sounds/drum5.wav');
 	this.load.audio('bass', './resources/sounds/bass.wav');
 	this.load.audio('bass2', './resources/sounds/bass2.wav');
+	this.load.audio('bass3', './resources/sounds/bass3.wav');
+	this.load.audio('bass4', './resources/sounds/bass4.wav');
 	this.load.audio('guitar', './resources/sounds/guitar.wav');
 	this.load.audio('guitar2', './resources/sounds/guitar2.wav');
+	this.load.audio('guitar3', './resources/sounds/guitar3.wav');
+	this.load.audio('guitar4', './resources/sounds/guitar4.wav');
+	this.load.audio('synth1', './resources/sounds/synth1.wav');
+	this.load.audio('synth2', './resources/sounds/synth2.wav');
+	this.load.audio('synth3', './resources/sounds/synth3.wav');
+	this.load.audio('synth4', './resources/sounds/synth4.wav');
 
 }
 
@@ -16,7 +27,7 @@ function create () {
   this.bpm = 120;
   this.loopTime = 4000;
 
-  this.instruments = ['Drums', 'Bass', 'Guitar']
+  this.instruments = ['Drums', 'Bass', 'Guitar', 'Synth'];
 
   this.music = this.add.group();
   const drums = this.sound.add('drums', {volume: 0.2});
@@ -27,22 +38,63 @@ function create () {
   drums2.loopNumber = 1;
   drums2.instrument = 'drums';
 	this.music.add(drums2);
+  const drums3 = this.sound.add('drums3', {volume: 0.5});
+  drums3.loopNumber = 2;
+  drums3.instrument = 'drums';
+	this.music.add(drums3);
+  const drums4 = this.sound.add('drums5', {volume: 0.5}); // using loop 5 instead of 4, for more variety
+  drums4.loopNumber = 3;
+  drums4.instrument = 'drums';
+	this.music.add(drums4);
 	const bass = this.sound.add('bass', {volume: 1});
-  bass.loopNumber = 2;
+  bass.loopNumber = 4;
   bass.instrument = 'bass';
 	this.music.add(bass);
 	const bass2 = this.sound.add('bass2', {volume: 1});
-  bass2.loopNumber = 3;
+  bass2.loopNumber = 5;
   bass2.instrument = 'bass';
 	this.music.add(bass2);
+	const bass3 = this.sound.add('bass3', {volume: 1});
+  bass3.loopNumber = 6;
+  bass3.instrument = 'bass';
+	this.music.add(bass3);
+	const bass4 = this.sound.add('bass4', {volume: 1});
+  bass4.loopNumber = 7;
+  bass4.instrument = 'bass';
+	this.music.add(bass4);
 	const guitar = this.sound.add('guitar', {volume: 0.5});
-  guitar.loopNumber = 4;
+  guitar.loopNumber = 8;
   guitar.instrument = 'guitar';
 	this.music.add(guitar);
 	const guitar2 = this.sound.add('guitar2', {volume: 0.2});
-  guitar2.loopNumber = 5;
+  guitar2.loopNumber = 9;
   guitar2.instrument = 'guitar';
 	this.music.add(guitar2);
+	const guitar3 = this.sound.add('guitar3', {volume: 0.2});
+  guitar3.loopNumber = 10;
+  guitar3.instrument = 'guitar';
+	this.music.add(guitar3);
+	const guitar4 = this.sound.add('guitar4', {volume: 0.2});
+  guitar4.loopNumber = 11;
+  guitar4.instrument = 'guitar';
+	this.music.add(guitar4);
+  const synth = this.sound.add('synth1', {volume: 0.5});
+  synth.loopNumber = 12;
+  synth.instrument = 'synth';
+	this.music.add(synth);
+	const synth2 = this.sound.add('synth2', {volume: 0.2});
+  synth2.loopNumber = 13;
+  synth2.instrument = 'synth';
+	this.music.add(synth2);
+	const synth3 = this.sound.add('synth3', {volume: 0.2});
+  synth3.loopNumber = 14;
+  synth3.instrument = 'synth';
+	this.music.add(synth3);
+	const synth4 = this.sound.add('synth4', {volume: 0.2});
+  synth4.loopNumber = 15;
+  synth4.instrument = 'synth';
+	this.music.add(synth4);
+  
 
   this.controllers = this.add.group();
 
@@ -50,12 +102,12 @@ function create () {
   for (let i = 0; i < this.instruments.length; i++) {
     const instrumentText = this.add.text(25, 125 + 75 * i, this.instruments[i], {fontSize: 24, color: "#000000"}).setOrigin(0);
     for (let j = 0; j < this.music.children.entries.filter(sound => sound.instrument === this.instruments[i].toLowerCase()).length; j++) {
-      const controller = this.add.rectangle(150 + 100 * j, 125 + 75 * i, 25, 25, 0xD3D3D3).setOrigin(0);
+      const controller = this.add.rectangle(150 + 75 * j, 125 + 75 * i, 25, 25, 0xD3D3D3).setOrigin(0);
       controller.strokeColor = 0x000000;
       controller.lineWidth = 2;
       controller.isStroked = true;
       controller.loopNumber = index;
-      controller.topOutline = this.add.rectangle(151 + 100 * j, 124 + 75 * i, 0, 2, 0x00FF00).setOrigin(0);
+      controller.topOutline = this.add.rectangle(151 + 75 * j, 124 + 75 * i, 0, 2, 0x00FF00).setOrigin(0);
       // controller.topOutlineTween = this.tweens.add({
       //   targets: controller.topOutline,
       //   duration: this.loopTime / 4,
@@ -67,14 +119,14 @@ function create () {
       //   }
       // });
     //   controller.topOutlineTween.pause();
-      controller.rightOutline = this.add.rectangle(174 + 100 * j, 126 + 75 * i, 2, 0, 0x00FF00).setOrigin(0);
+      controller.rightOutline = this.add.rectangle(174 + 75 * j, 126 + 75 * i, 2, 0, 0x00FF00).setOrigin(0);
 
 
     //   controller.rightOutlineTween.pause();
-      controller.bottomOutline = this.add.rectangle(174 + 100 * j, 151 + 75 * i, 0, 2, 0x00FF00).setOrigin(1);
+      controller.bottomOutline = this.add.rectangle(174 + 75 * j, 151 + 75 * i, 0, 2, 0x00FF00).setOrigin(1);
       
     //   controller.bottomOutlineTween.pause();
-      controller.leftOutline = this.add.rectangle(151 + 100 * j, 149 + 75 * i, 2, 0, 0x00FF00).setOrigin(1);
+      controller.leftOutline = this.add.rectangle(151 + 75 * j, 149 + 75 * i, 2, 0, 0x00FF00).setOrigin(1);
 
     //   controller.leftOutlineTween.pause();
       controller.setInteractive();
@@ -257,7 +309,7 @@ function update (time, delta) {
 const config = {
   type: Phaser.AUTO,
   width: 640,
-	height: 360,
+	height: 460,
 	backgroundColor: "b9eaff",
   scene: {
 		preload,

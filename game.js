@@ -3,16 +3,16 @@ const gameState = {
 }
 
 function preload () {
-	this.load.audio('drums', './resources/sounds/drum.wav');
-	this.load.audio('drums2', './resources/sounds/drum2.wav');
-	this.load.audio('drums3', './resources/sounds/drum3.wav');
-	this.load.audio('drums4', './resources/sounds/drum4.wav');
+	this.load.audio('drums1', './resources/sounds/drums1.wav');
+	this.load.audio('drums2', './resources/sounds/drums2.wav');
+	this.load.audio('drums3', './resources/sounds/drums3.wav');
+	this.load.audio('drums4', './resources/sounds/drums4.wav');
 	this.load.audio('drums5', './resources/sounds/drum5.wav');
-	this.load.audio('bass', './resources/sounds/bass.wav');
+	this.load.audio('bass1', './resources/sounds/bass1.wav');
 	this.load.audio('bass2', './resources/sounds/bass2.wav');
 	this.load.audio('bass3', './resources/sounds/bass3.wav');
 	this.load.audio('bass4', './resources/sounds/bass4.wav');
-	this.load.audio('guitar', './resources/sounds/guitar.wav');
+	this.load.audio('guitar1', './resources/sounds/guitar1.wav');
 	this.load.audio('guitar2', './resources/sounds/guitar2.wav');
 	this.load.audio('guitar3', './resources/sounds/guitar3.wav');
 	this.load.audio('guitar4', './resources/sounds/guitar4.wav');
@@ -30,10 +30,10 @@ function create () {
   this.instruments = ['Drums', 'Bass', 'Guitar', 'Synth'];
 
   this.music = this.add.group();
-  const drums = this.sound.add('drums', {volume: 0.2});
-  drums.loopNumber = 0;
-  drums.instrument = 'drums';
-	this.music.add(drums);
+  const drums1 = this.sound.add('drums1', {volume: 0.2});
+  drums1.loopNumber = 0;
+  drums1.instrument = 'drums';
+	this.music.add(drums1);
   const drums2 = this.sound.add('drums2', {volume: 0.5});
   drums2.loopNumber = 1;
   drums2.instrument = 'drums';
@@ -42,14 +42,14 @@ function create () {
   drums3.loopNumber = 2;
   drums3.instrument = 'drums';
 	this.music.add(drums3);
-  const drums4 = this.sound.add('drums5', {volume: 0.5}); // using loop 5 instead of 4, for more variety
+  const drums4 = this.sound.add('drums4', {volume: 0.5});
   drums4.loopNumber = 3;
   drums4.instrument = 'drums';
 	this.music.add(drums4);
-	const bass = this.sound.add('bass', {volume: 1});
-  bass.loopNumber = 4;
-  bass.instrument = 'bass';
-	this.music.add(bass);
+	const bass1 = this.sound.add('bass1', {volume: 1});
+  bass1.loopNumber = 4;
+  bass1.instrument = 'bass1';
+	this.music.add(bass1);
 	const bass2 = this.sound.add('bass2', {volume: 1});
   bass2.loopNumber = 5;
   bass2.instrument = 'bass';
@@ -62,10 +62,10 @@ function create () {
   bass4.loopNumber = 7;
   bass4.instrument = 'bass';
 	this.music.add(bass4);
-	const guitar = this.sound.add('guitar', {volume: 0.5});
-  guitar.loopNumber = 8;
-  guitar.instrument = 'guitar';
-	this.music.add(guitar);
+	const guitar1 = this.sound.add('guitar1', {volume: 0.5});
+  guitar1.loopNumber = 8;
+  guitar1.instrument = 'guitar';
+	this.music.add(guitar1);
 	const guitar2 = this.sound.add('guitar2', {volume: 0.2});
   guitar2.loopNumber = 9;
   guitar2.instrument = 'guitar';

@@ -127,7 +127,6 @@ function create () {
     if (this.music.children.entries[loopNum].queued) {
       this.music.children.entries[loopNum].stop();
       this.music.children.entries[loopNum].queued = false;
-      this.controllers.children.entries[loopNum].fillColor = 0xD3D3D3;
       if (this.controllers.children.entries[loopNum].topOutlineTween) {
         this.controllers.children.entries[loopNum].topOutlineTween.stop();
         this.controllers.children.entries[loopNum].topOutline.width = 0;
@@ -159,15 +158,16 @@ function create () {
       // this.controllers.children.entries[loopNum].leftOutline.y = this.controllers.children.entries[loopNum].topOutline.y + 25;
     } else {
       this.music.children.entries[loopNum].queued = true;
-      this.controllers.children.entries[loopNum].fillColor = 0xFFFFFF;
     }
   }
 
   const toggleButton = loopNum => {
     let offset;
     if (this.music.children.entries[loopNum].queued) {
+      this.controllers.children.entries[loopNum].fillColor = 0xFFFFFF;
       offset = 3;
     } else {
+      this.controllers.children.entries[loopNum].fillColor = 0xD3D3D3;
       offset = -3;
     }
     this.controllers.children.entries[loopNum].x += offset;

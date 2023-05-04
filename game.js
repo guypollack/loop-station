@@ -102,41 +102,24 @@ function create () {
   for (let i = 0; i < this.instruments.length; i++) {
     const instrumentText = this.add.text(25, 125 + 75 * i, this.instruments[i], {fontSize: 24, color: "#000000"}).setOrigin(0);
     for (let j = 0; j < this.music.children.entries.filter(sound => sound.instrument === this.instruments[i].toLowerCase()).length; j++) {
-      const controller = this.add.rectangle(150 + 75 * j, 125 + 75 * i, 25, 25, 0xD3D3D3).setOrigin(0);
+      const controllerBackground = this.add.rectangle(155 + 75 * j, 125 + 75 * i, 25, 25, 0x000000).setOrigin(0);
+      const controller = this.add.rectangle(152 + 75 * j, 122 + 75 * i, 25, 25, 0xD3D3D3).setOrigin(0);
       controller.strokeColor = 0x000000;
       controller.lineWidth = 2;
       controller.isStroked = true;
       controller.loopNumber = index;
-      controller.topOutline = this.add.rectangle(151 + 75 * j, 124 + 75 * i, 0, 2, 0x00FF00).setOrigin(0);
-      // controller.topOutlineTween = this.tweens.add({
-      //   targets: controller.topOutline,
-      //   duration: this.loopTime / 4,
-      //   delay: 1, // needed otherwise width does not reset between end of tween and start of next
-      //   width: 25,
-      //   completeDelay: 3 * this.loopTime / 4,
-      //   onComplete: () => {
-      //     // controller.topOutline.width = 0;
-      //   }
-      // });
-    //   controller.topOutlineTween.pause();
-      controller.rightOutline = this.add.rectangle(174 + 75 * j, 126 + 75 * i, 2, 0, 0x00FF00).setOrigin(0);
-
-
-    //   controller.rightOutlineTween.pause();
-      controller.bottomOutline = this.add.rectangle(174 + 75 * j, 151 + 75 * i, 0, 2, 0x00FF00).setOrigin(1);
-      
-    //   controller.bottomOutlineTween.pause();
-      controller.leftOutline = this.add.rectangle(151 + 75 * j, 149 + 75 * i, 2, 0, 0x00FF00).setOrigin(1);
-
-    //   controller.leftOutlineTween.pause();
+      controller.topOutline = this.add.rectangle(153 + 75 * j, 121 + 75 * i, 0, 2, 0x00FF00).setOrigin(0);
+      controller.rightOutline = this.add.rectangle(176 + 75 * j, 123 + 75 * i, 2, 0, 0x00FF00).setOrigin(0);
+      controller.bottomOutline = this.add.rectangle(176 + 75 * j, 148 + 75 * i, 0, 2, 0x00FF00).setOrigin(1);
+      controller.leftOutline = this.add.rectangle(153 + 75 * j, 146 + 75 * i, 2, 0, 0x00FF00).setOrigin(1);
       controller.setInteractive();
       controller.on('pointerup', () => {
         toggleMusic(controller.loopNumber);
+        toggleButton(controller.loopNumber);
       });
       this.controllers.add(controller);
       index++;
     }
-
   }
   
   const toggleMusic = loopNum => {
@@ -178,6 +161,25 @@ function create () {
       this.music.children.entries[loopNum].queued = true;
       this.controllers.children.entries[loopNum].fillColor = 0xFFFFFF;
     }
+  }
+
+  const toggleButton = loopNum => {
+    let offset;
+    if (this.music.children.entries[loopNum].queued) {
+      offset = 3;
+    } else {
+      offset = -3;
+    }
+    this.controllers.children.entries[loopNum].x += offset;
+    this.controllers.children.entries[loopNum].y += offset;
+    this.controllers.children.entries[loopNum].topOutline.x += offset;
+    this.controllers.children.entries[loopNum].topOutline.y += offset;
+    this.controllers.children.entries[loopNum].rightOutline.x += offset;
+    this.controllers.children.entries[loopNum].rightOutline.y += offset;
+    this.controllers.children.entries[loopNum].bottomOutline.x += offset;
+    this.controllers.children.entries[loopNum].bottomOutline.y += offset;
+    this.controllers.children.entries[loopNum].leftOutline.x += offset;
+    this.controllers.children.entries[loopNum].leftOutline.y += offset;
   }
   
   this.counterBackground = this.add.rectangle(50, 50, 404, 24, 0xFFFFFF, 1.0).setOrigin(0);

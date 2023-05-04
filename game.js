@@ -313,6 +313,9 @@ const config = {
   width: 640,
 	height: 460,
 	backgroundColor: "b9eaff",
+  audio: {
+    disableWebAudio: true
+  },
   scene: {
 		preload,
 		create,
